@@ -10,6 +10,7 @@ An interactive, in-browser MongoDB tutorial. Write real MongoDB queries against 
 - **Hints that guide** — Progressive hints for each lesson that point you in the right direction without giving away the answer.
 - **No signup, no cost** — Everything runs client-side. No account, no email, no credit card.
 - **Progress that persists** — Completed lessons, last query, and attempt counts are saved to localStorage automatically.
+- **Analytics** — Optional PostHog integration tracks lesson completions, query attempts, hint usage, and drop-off to help improve the curriculum.
 
 ## Tech Stack
 
@@ -20,6 +21,7 @@ An interactive, in-browser MongoDB tutorial. Write real MongoDB queries against 
 | **Tailwind CSS v4** | Utility-first styling |
 | **React Router v7** | Client-side routing |
 | **Monaco Editor** | In-browser code editor |
+| **PostHog** | Product analytics (optional) |
 | **canvas-confetti** | Celebration animations |
 | **Vitest** | Unit testing |
 | **ESLint** | Linting |
@@ -37,10 +39,12 @@ Open the local URL shown in the terminal (usually `http://localhost:5173`).
 
 | Variable | Required | Default | Description |
 |---|---|---|---|
-| `VITE_POSTHOG_KEY` | No | — | PostHog project API key for analytics |
-| `VITE_POSTHOG_HOST` | No | `https://us.i.posthog.com` | PostHog instance host |
+| `VITE_PUBLIC_POSTHOG_KEY` | No | — | PostHog project API key for analytics |
+| `VITE_PUBLIC_POSTHOG_HOST` | No | `https://us.i.posthog.com` | PostHog instance host |
 
-Analytics is a no-op when `VITE_POSTHOG_KEY` is not set, so you can develop without it.
+Analytics is a no-op when the key is not set, so you can develop without it.
+
+> **Note:** `VITE_POSTHOG_KEY` / `VITE_POSTHOG_HOST` (without `PUBLIC_`) are also accepted for compatibility.
 
 ## Scripts
 
@@ -78,6 +82,27 @@ src/
 3. **Run and compare** — Press `Cmd+Enter` (or `Ctrl+Enter`) to execute. See your result next to the expected output.
 
 The query engine parses MongoDB shell syntax, executes against in-memory collections, and compares results using deep equality. All data is pre-loaded sample datasets — no network requests needed.
+
+## Analytics
+
+PostHog analytics is built in but disabled by default. Set `VITE_PUBLIC_POSTHOG_KEY` in `.env` to enable.
+
+The following events are tracked when analytics is active:
+
+| Event | When |
+|---|---|
+| `$pageview` | Every page navigation |
+| `cta_clicked` | Click on any "Start learning" / CTA button on the landing page |
+| `lesson_started` | User opens a lesson |
+| `query_run` | User executes a query (includes `matched` and `total_attempts`) |
+| `lesson_completed` | User gets the correct answer |
+| `module_completed` | All lessons in a module are finished |
+| `all_lessons_completed` | All 31 lessons are finished |
+| `query_error` | Query throws a parse or execution error |
+| `query_reset` | User presses the Reset button |
+| `hint_viewed` | User opens a hint or navigates between hints |
+
+No personal data is collected. Events are associated with a random anonymous ID stored in localStorage.
 
 ## Adding Lessons
 
