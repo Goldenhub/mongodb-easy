@@ -98,7 +98,7 @@ export default function LandingPage() {
           <div className="flex items-center gap-4">
             <a href="#features" className="text-xs text-slate-500 hover:text-slate-800 hidden sm:inline">Features</a>
             <a href="#curriculum" className="text-xs text-slate-500 hover:text-slate-800 hidden sm:inline">Curriculum</a>
-            <Link to="/learn" onClick={() => captureCtaClicked('Start learning', 'header')} className="text-xs font-medium text-white bg-[#47A248] hover:bg-[#3a8a3e] px-3 py-1.5 rounded-md transition-colors">
+             <Link to="/learn" onClick={() => captureCtaClicked('Start learning', 'header')} className="text-xs font-medium text-white bg-[#47A248] hover:bg-[#3a8a3e] px-3 py-1.5 rounded-md transition-colors whitespace-nowrap">
               Start learning
             </Link>
           </div>
@@ -123,7 +123,7 @@ export default function LandingPage() {
             <Link
               to="/learn"
               onClick={() => captureCtaClicked('Start the first lesson', 'hero')}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#47A248] text-white font-medium rounded-lg hover:bg-[#3a8a3e] transition-colors text-sm"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#47A248] text-white font-medium rounded-lg hover:bg-[#3a8a3e] transition-colors text-sm whitespace-nowrap"
             >
               Start the first lesson
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 16 16">
@@ -132,7 +132,7 @@ export default function LandingPage() {
             </Link>
             <a
               href="#curriculum"
-              className="inline-flex items-center gap-2 px-6 py-3 text-slate-600 font-medium rounded-lg border border-slate-300 hover:border-slate-400 hover:text-slate-800 transition-colors text-sm"
+              className="inline-flex items-center gap-2 px-6 py-3 text-slate-600 font-medium rounded-lg border border-slate-300 hover:border-slate-400 hover:text-slate-800 transition-colors text-sm whitespace-nowrap"
             >
               See the curriculum
             </a>
@@ -228,7 +228,7 @@ export default function LandingPage() {
             <Link
               to="/learn"
               onClick={() => captureCtaClicked('Start learning now', 'how_it_works')}
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#47A248] text-white font-medium rounded-lg hover:bg-[#3a8a3e] transition-colors text-sm"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#47A248] text-white font-medium rounded-lg hover:bg-[#3a8a3e] transition-colors text-sm whitespace-nowrap"
             >
               Start learning now
             </Link>
@@ -276,7 +276,7 @@ export default function LandingPage() {
           <Link
             to="/learn"
             onClick={() => captureCtaClicked('Start the first lesson', 'footer_cta')}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-[#47A248] text-white font-medium rounded-lg hover:bg-[#3a8a3e] transition-colors text-sm"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#47A248] text-white font-medium rounded-lg hover:bg-[#3a8a3e] transition-colors text-sm whitespace-nowrap"
           >
             Start the first lesson
             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 16 16">
@@ -287,7 +287,7 @@ export default function LandingPage() {
       </section>
 
       <footer className="border-t border-slate-200 bg-slate-50/50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-1 py-3 sm:h-14">
           <span className="text-xs text-slate-400">MongoDB Easy — a free, in-browser MongoDB tutorial</span>
           <span className="text-xs text-slate-400">
             Created by <a href="https://github.com/goldenhub" target="_blank" rel="noopener noreferrer" className="text-[#47A248] underline hover:brightness-75">goldenhub</a>
