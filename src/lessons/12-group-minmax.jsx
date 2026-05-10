@@ -42,7 +42,7 @@ const lesson = {
       <p>
         <code>$min</code> and <code>$max</code> work on numbers and dates.
         <code>$push</code> collects every value into an array - use <code>$addToSet</code>
-        instead if you want only unique values.
+        &nbsp;instead if you want only unique values.
       </p>
     </>
   ),

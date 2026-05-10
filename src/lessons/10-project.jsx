@@ -26,7 +26,7 @@ const lesson = {
       </pre>
       <p>
         In the example above, <code>$price</code> refers to the value of the
-        <code>price</code> field in the current document. The <code>$multiply</code> expression
+        &nbsp;<code>price</code> field in the current document. The <code>$multiply</code> expression
         calculates a new field from it.
       </p>
       <p>

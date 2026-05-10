@@ -62,9 +62,9 @@ const lesson = {
       </pre>
       <p>
         Each document is placed into the first bucket where <code>groupBy</code> is
-        <code>&gt;= boundary[i]</code> and <code>&lt; boundary[i+1]</code>.
+        &nbsp;<code>&gt;= boundary[i]</code> and <code>&lt; boundary[i+1]</code>.
         The <code>output</code> defines accumulators for each bucket (like in
-        <code>$group</code>). The <code>default</code> bucket catches documents that
+        &nbsp;<code>$group</code>). The <code>default</code> bucket catches documents that
         don't fall into any boundary.
       </p>
     </>

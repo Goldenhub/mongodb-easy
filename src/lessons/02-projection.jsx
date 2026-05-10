@@ -22,7 +22,7 @@ const lesson = {
       </pre>
       <p>
         The <code>_id</code> field is included by default. To exclude it, add <code>_id: 0</code>
-        to the projection:
+        &nbsp;to the projection:
       </p>
       <pre className="bg-slate-100 text-slate-800 p-3 rounded-lg text-sm overflow-x-auto my-3">
 {`db.books.find({}, { title: 1, author: 1, _id: 0 })`}

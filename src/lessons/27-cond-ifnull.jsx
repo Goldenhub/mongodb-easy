@@ -54,7 +54,7 @@ const lesson = {
       </pre>
       <p>
         This is the MongoDB equivalent of SQL's <code>CASE WHEN</code> and
-        <code>COALESCE</code>.
+        &nbsp;<code>COALESCE</code>.
       </p>
     </>
   ),

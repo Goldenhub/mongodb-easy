@@ -21,7 +21,7 @@ const lesson = {
       <p>
         The <code>$expr</code> operator lets you use aggregation expressions inside a
         query. The <code>$</code> prefix refers to field values (e.g., <code>"$copies"</code>
-        means the value of the <code>copies</code> field).
+         &nbsp;means the value of the <code>copies</code> field).
       </p>
       <p>
         This is useful for: comparing fields, date arithmetic, and conditional logic

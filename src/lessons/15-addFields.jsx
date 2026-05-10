@@ -23,7 +23,7 @@ const lesson = {
     <>
       <p>
         Unlike <code>$project</code> which can only keep explicitly included fields,
-        <code>$addFields</code> adds new fields while keeping <em>all</em> existing
+        &nbsp;<code>$addFields</code> adds new fields while keeping <em>all</em> existing
         fields unchanged:
       </p>
       <pre className="bg-slate-100 text-slate-800 p-3 rounded-lg text-sm overflow-x-auto my-3">

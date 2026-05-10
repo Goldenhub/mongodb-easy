@@ -10,7 +10,7 @@ const lesson = {
     <>
       <p>
         Use <code>insertOne()</code> to add a single document, or <code>insertMany()</code>
-        to add multiple documents at once:
+        &nbsp;to add multiple documents at once:
       </p>
       <pre className="bg-slate-100 text-slate-800 p-3 rounded-lg text-sm overflow-x-auto my-3">
 {`db.books.insertOne({

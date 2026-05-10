@@ -35,7 +35,7 @@ const lesson = {
       </p>
       <p>
         After unwinding, you can use <code>$match</code>, <code>$group</code>, or
-        <code>$project</code> on the individual elements.
+        &nbsp;<code>$project</code> on the individual elements.
       </p>
     </>
   ),

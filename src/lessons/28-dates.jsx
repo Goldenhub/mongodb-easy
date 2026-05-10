@@ -25,7 +25,7 @@ const lesson = {
       </pre>
       <p>
         In the MongoDB shell, you use <code>new Date("...")</code> or <code>ISODate("...")</code>
-        to create date values. Dates are stored in UTC and can be formatted for display
+        &nbsp;to create date values. Dates are stored in UTC and can be formatted for display
         using aggregation date operators.
       </p>
       <p>

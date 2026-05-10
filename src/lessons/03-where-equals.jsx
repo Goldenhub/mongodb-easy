@@ -18,7 +18,7 @@ const lesson = {
       <p>
         This returns every document where <code>genre</code> equals <code>"fiction"</code>.
         The query object uses <code>{`{field: value}`}</code> syntax, which is shorthand for
-        <code>{`{ field: { $eq: value } }`}</code>.
+        &nbsp;<code>{`{ field: { $eq: value } }`}</code>.
       </p>
       <p>
         You can filter on any field - strings, numbers, booleans, or even embedded documents.

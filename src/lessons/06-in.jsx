@@ -17,7 +17,7 @@ const lesson = {
       </pre>
       <p>
         This returns books where <code>genre</code> is either <code>"fiction"</code> or
-        <code>"technology"</code>.
+        &nbsp;<code>"technology"</code>.
       </p>
       <p>
         The <code>$nin</code> (not-in) operator does the opposite - it matches documents where

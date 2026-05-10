@@ -36,8 +36,8 @@ const lesson = {
       </p>
       <p>
         You can also use a negative number to get elements from the end:
-        <code>{`{ $slice: -2 }`}</code> returns the last 2 elements, and
-        <code>{`{ $slice: [1, 2] }`}</code> skips 1 element then returns 2.
+        &nbsp;<code>{`{ $slice: -2 }`}</code> returns the last 2 elements, and
+        &nbsp;<code>{`{ $slice: [1, 2] }`}</code> skips 1 element then returns 2.
       </p>
     </>
   ),

@@ -10,7 +10,7 @@ const lesson = {
     <>
       <p>
         <code>limit()</code> restricts how many documents are returned, and <code>skip()</code>
-        skips over a number of documents before returning results:
+        &nbsp;skips over a number of documents before returning results:
       </p>
       <pre className="bg-slate-100 text-slate-800 p-3 rounded-lg text-sm overflow-x-auto my-3">
 {`db.books.find().sort({ rating: -1 }).limit(3)`}

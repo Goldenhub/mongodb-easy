@@ -53,7 +53,7 @@ const lesson = {
       </ul>
       <p>
         The result is always an array (even if there's only one match). After
-        <code>$lookup</code>, you can use <code>$unwind</code> to flatten the array.
+        &nbsp;<code>$lookup</code>, you can use <code>$unwind</code> to flatten the array.
       </p>
     </>
   ),

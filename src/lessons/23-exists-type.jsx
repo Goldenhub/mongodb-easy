@@ -27,7 +27,7 @@ const lesson = {
       </pre>
       <p>
         Common types: <code>"string"</code>, <code>"number"</code>, <code>"bool"</code>,
-        <code>"array"</code>, <code>"object"</code>, <code>"null"</code>.
+        &nbsp;<code>"array"</code>, <code>"object"</code>, <code>"null"</code>.
       </p>
     </>
   ),

@@ -16,7 +16,7 @@ const lesson = {
     <>
       <p>
         The aggregation pipeline has its own <code>$sort</code> and <code>$limit</code>
-        stages. They work just like the cursor methods, but inside a pipeline:
+        &nbsp;stages. They work just like the cursor methods, but inside a pipeline:
       </p>
       <pre className="bg-slate-100 text-slate-800 p-3 rounded-lg text-sm overflow-x-auto my-3">
 {`db.books.aggregate([
