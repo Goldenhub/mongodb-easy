@@ -98,7 +98,19 @@ export default function LandingPage() {
           <div className="flex items-center gap-4">
             <a href="#features" className="text-xs text-slate-500 hover:text-slate-800 hidden sm:inline">Features</a>
             <a href="#curriculum" className="text-xs text-slate-500 hover:text-slate-800 hidden sm:inline">Curriculum</a>
-             <Link to="/learn" onClick={() => captureCtaClicked('Start learning', 'header')} className="text-xs font-medium text-white bg-[#47A248] hover:bg-[#3a8a3e] px-3 py-1.5 rounded-md transition-colors whitespace-nowrap">
+            <a
+              href="https://github.com/Goldenhub/mongodb-easy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 text-xs text-slate-500 hover:text-yellow-500 transition-colors"
+              title="Star on GitHub"
+            >
+              <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" />
+              </svg>
+              Star
+            </a>
+            <Link to="/learn" onClick={() => captureCtaClicked('Start learning', 'header')} className="text-xs font-medium text-white bg-[#47A248] hover:bg-[#3a8a3e] px-3 py-1.5 rounded-md transition-colors whitespace-nowrap">
               Start learning
             </Link>
           </div>
