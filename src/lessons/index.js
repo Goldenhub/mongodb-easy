@@ -1,3 +1,4 @@
+import lesson00 from './00-intro.jsx'
 import lesson01 from './01-find-all.jsx'
 import lesson02 from './02-projection.jsx'
 import lesson03 from './03-where-equals.jsx'
@@ -31,6 +32,7 @@ import lesson30 from './30-bucket.jsx'
 import lesson31 from './31-facet.jsx'
 
 const lessons = [
+  lesson00,
   lesson01, lesson02, lesson03, lesson04, lesson05,
   lesson06, lesson07, lesson08, lesson09, lesson10,
   lesson11, lesson12, lesson13, lesson14, lesson15,

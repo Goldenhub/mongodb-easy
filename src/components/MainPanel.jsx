@@ -91,7 +91,7 @@ export default function MainPanel({
         <div>
           <div className="flex items-center gap-2 mb-1">
             <span className="text-xs font-mono bg-slate-100 text-slate-500 px-2 py-0.5 rounded">
-              Lesson {lesson.id} of 31
+              Lesson {lesson.id} of {totalLessons}
             </span>
             {lesson.module && (
               <span className="text-xs text-slate-400">{lesson.module}</span>
@@ -222,7 +222,7 @@ export default function MainPanel({
               </svg>
             </div>
             <h3 className="text-lg font-bold text-slate-900 mb-1">All Lessons Completed!</h3>
-            <p className="text-sm text-slate-600 mb-4">You finished all 31 lessons in the MongoDB Easy tutorial.</p>
+            <p className="text-sm text-slate-600 mb-4">You finished all {totalLessons} lessons in the MongoDB Easy tutorial.</p>
             <div className="flex items-center justify-center gap-6 mb-4">
               <div className="text-center">
                 <div className="text-2xl font-bold text-[#47A248]">{totalLessons}</div>

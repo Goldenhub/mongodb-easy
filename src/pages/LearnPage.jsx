@@ -43,7 +43,7 @@ export default function LearnPage() {
     if (currentLesson) {
       const saved = lessonStates[String(currentLessonId)]
       // eslint-disable-next-line react-hooks/set-state-in-effect
-      setQuery(saved?.lastCode || placeholderText)
+      setQuery(saved?.lastCode || (currentLesson.id === 0 ? currentLesson.defaultQuery : placeholderText))
       setYourResult(null)
       setMatch(null)
       setError(null)
