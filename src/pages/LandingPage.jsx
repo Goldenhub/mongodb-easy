@@ -119,11 +119,11 @@ export default function LandingPage() {
             Type real MongoDB syntax, see results instantly, and build skills that
             translate directly to production databases.
           </p>
-          <div className="mt-8 flex items-center justify-center gap-4">
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-2 sm:px-0">
             <Link
               to="/learn"
               onClick={() => captureCtaClicked('Start the first lesson', 'hero')}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#47A248] text-white font-medium rounded-lg hover:bg-[#3a8a3e] transition-colors text-sm whitespace-nowrap"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#47A248] text-white font-medium rounded-lg hover:bg-[#3a8a3e] transition-colors text-sm whitespace-nowrap"
             >
               Start the first lesson
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 16 16">
@@ -132,7 +132,7 @@ export default function LandingPage() {
             </Link>
             <a
               href="#curriculum"
-              className="inline-flex items-center gap-2 px-6 py-3 text-slate-600 font-medium rounded-lg border border-slate-300 hover:border-slate-400 hover:text-slate-800 transition-colors text-sm whitespace-nowrap"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 text-slate-600 font-medium rounded-lg border border-slate-300 hover:border-slate-400 hover:text-slate-800 transition-colors text-sm whitespace-nowrap"
             >
               See the curriculum
             </a>
