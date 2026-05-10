@@ -1,0 +1,75 @@
+import { useMemo } from 'react'
+import { getModuleBoundaries } from '../utils/modules.js'
+
+export default function Sidebar({ lessons, currentLessonId, lessonStates, onSelectLesson }) {
+  const moduleBoundaries = useMemo(() => getModuleBoundaries(lessons.length), [lessons.length])
+
+  function moduleCompleted(lessonStates, start, end) {
+    for (let id = start; id <= end; id++) {
+      if (!lessonStates[String(id)]?.completed) return false
+    }
+    return true
+  }
+
+  const totalCompleted = lessons
+    ? Object.values(lessonStates).filter((s) => s.completed).length
+    : 0
+
+  return (
+    <aside className="w-72 bg-white text-slate-700 flex flex-col h-full select-none shrink-0 border-r border-slate-200">
+      <div className="px-4 py-4 border-b border-slate-200">
+        <h1 className="text-lg font-bold text-slate-900 tracking-tight">
+          MongoDB Easy
+        </h1>
+        <p className="text-xs text-slate-400 mt-0.5">
+          {totalCompleted}/{lessons.length} lessons completed
+        </p>
+        <div className="mt-2 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+          <div
+            className="h-full bg-[#47A248] rounded-full transition-all duration-300"
+            style={{ width: `${(totalCompleted / lessons.length) * 100}%` }}
+          />
+        </div>
+      </div>
+
+      <nav className="flex-1 overflow-y-auto scrollbar-thin py-2">
+        {moduleBoundaries.map(({ start, end, name }) => (
+          <div key={start}>
+            <div className="px-4 py-1.5 text-xs font-semibold text-slate-500 uppercase tracking-wider flex items-center justify-between">
+              <span>{name}</span>
+              <span className={`text-xs font-normal ${moduleCompleted(lessonStates, start, end) ? 'text-[#47A248]' : 'text-slate-400'}`}>
+                {lessons.slice(start - 1, end).filter((l) => lessonStates[String(l.id)]?.completed).length}/{end - start + 1}
+              </span>
+            </div>
+            {lessons.slice(start - 1, end).map((lesson) => {
+              const state = lessonStates[String(lesson.id)]
+              const done = state?.completed === true
+              const active = lesson.id === currentLessonId
+              return (
+                <button
+                  key={lesson.id}
+                  onClick={() => onSelectLesson(lesson.id)}
+                  className={`w-full text-left px-4 py-1.5 flex items-center gap-2 text-sm transition-colors ${
+                    active
+                      ? 'bg-green-50 text-green-800 border-l-2 border-[#47A248]'
+                      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 border-l-2 border-transparent'
+                  }`}
+                >
+                  <span className={`w-5 h-5 rounded-full flex items-center justify-center text-xs shrink-0 ${
+                    done ? 'bg-[#47A248] text-white' : 'bg-slate-200 text-slate-500'
+                  }`}>
+                    {done ? '✓' : lesson.id}
+                  </span>
+                  <span className="truncate">{lesson.title}</span>
+                </button>
+              )
+            })}
+          </div>
+        ))}
+      </nav>
+      <div className="px-4 py-2 border-t border-slate-200 text-xs text-slate-400 text-center">
+        by <a href="https://github.com/goldenhub" target="_blank" rel="noopener noreferrer" className="text-[#47A248] underline hover:brightness-75">goldenhub</a>
+      </div>
+    </aside>
+  )
+}

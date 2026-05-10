@@ -1,0 +1,102 @@
+function DocTable({ docs, label, accent }) {
+  if (!docs || docs.length === 0) {
+    return (
+      <div className="p-4 text-sm text-slate-400 italic">
+        {label === 'Your Result' ? 'Run a query to see results' : 'Expected result shown here'}
+      </div>
+    )
+  }
+
+  const columns = Object.keys(docs[0])
+
+  return (
+    <div className="overflow-auto max-h-72">
+      <table className="w-full text-xs font-mono border-collapse">
+        <thead>
+          <tr className={`${accent === 'green' ? 'bg-[#47A248]/10' : 'bg-blue-50'} sticky top-0`}>
+            {columns.map((col) => (
+              <th key={col} className="px-3 py-1.5 text-left font-semibold text-slate-600 border-b border-slate-200 whitespace-nowrap">
+                {col}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {docs.map((doc, i) => (
+            <tr key={i} className="border-b border-slate-100 hover:bg-slate-50">
+              {columns.map((col) => (
+                <td key={col} className="px-3 py-1 text-slate-700 whitespace-nowrap">
+                  {formatCell(doc[col])}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div className="px-3 py-1 text-xs text-slate-400 bg-slate-50 border-t border-slate-200">
+        {docs.length} document{docs.length !== 1 ? 's' : ''}
+      </div>
+    </div>
+  )
+}
+
+function formatCell(val) {
+  if (val === null || val === undefined) return <span className="text-slate-400 italic">null</span>
+  if (typeof val === 'boolean') return <span className="text-amber-600">{String(val)}</span>
+  if (typeof val === 'number') return <span className="text-blue-600">{val}</span>
+  if (Array.isArray(val)) {
+    if (val.length === 0) return <span className="text-slate-400">[]</span>
+    return (
+      <details className="inline-block">
+        <summary className="cursor-pointer text-slate-500 hover:text-slate-700">[{val.length}]</summary>
+        <pre className="mt-1 p-2 bg-slate-50 rounded border text-xs">{JSON.stringify(val, null, 2)}</pre>
+      </details>
+    )
+  }
+  if (typeof val === 'object') return <pre className="inline text-xs">{JSON.stringify(val)}</pre>
+  return String(val)
+}
+
+function CompareBadge({ match }) {
+  if (match === undefined) return null
+  return match ? (
+    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs bg-green-100 text-green-700 font-medium">
+      <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 16 16">
+        <path d="M3 8l3 3 7-7" />
+      </svg>
+      Matches expected
+    </span>
+  ) : (
+    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs bg-red-100 text-red-700 font-medium">
+      <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 16 16">
+        <path d="M4 4l8 8M12 4l-8 8" />
+      </svg>
+      Doesn't match
+    </span>
+  )
+}
+
+export default function ResultsPane({ yourResult, expectedResult, match }) {
+  return (
+    <div>
+      <div className="flex items-center gap-3 mb-2">
+        <h3 className="text-sm font-semibold text-slate-700">Results</h3>
+        <CompareBadge match={match} />
+      </div>
+      <div className="grid grid-cols-2 gap-3 border border-slate-300 rounded-lg overflow-hidden">
+        <div>
+          <div className="px-3 py-1.5 bg-slate-100 border-b border-slate-300 text-xs font-semibold text-slate-600">
+            Your Result
+          </div>
+          <DocTable docs={yourResult} label="Your Result" accent="green" />
+        </div>
+        <div>
+          <div className="px-3 py-1.5 bg-slate-100 border-b border-slate-300 text-xs font-semibold text-slate-600">
+            Expected Result
+          </div>
+          <DocTable docs={expectedResult} label="Expected Result" accent="blue" />
+        </div>
+      </div>
+    </div>
+  )
+}
