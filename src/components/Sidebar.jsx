@@ -20,7 +20,7 @@ export default function Sidebar({ lessons, currentLessonId, lessonStates, onSele
     <aside className="w-72 bg-white text-slate-700 flex flex-col h-full select-none shrink-0 border-r border-slate-200">
       <div className="px-4 py-4 border-b border-slate-200">
         <h1 className="text-lg font-bold text-slate-900 tracking-tight">
-          MongoDB Easy
+          Mongeesy
         </h1>
         <p className="text-xs text-slate-400 mt-0.5">
           {totalCompleted}/{lessons.length} lessons completed

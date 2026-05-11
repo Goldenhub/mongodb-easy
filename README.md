@@ -1,4 +1,4 @@
-# MongoDB Easy
+# Mongeesy
 
 An interactive, in-browser MongoDB playground. Write real MongoDB queries against real data and get instant feedback — no setup, no signup, no cloud.
 

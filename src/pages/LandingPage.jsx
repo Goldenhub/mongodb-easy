@@ -93,14 +93,14 @@ export default function LandingPage() {
             <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="#47A248">
               <path d="M17.193 9.555c-1.264-5.58-4.252-7.414-4.573-8.745-.045-.21-.112-.417-.197-.61-.06-.153-.132-.324-.15-.518v-.019c-.023-.246-.09-.575-.09-.575l-.076-.305s-.33.157-.374.32c-.065.237-.064.476-.008.714.07.333.187.655.34.961.055.112.112.223.17.334-1.038 1.028-2.072 2.21-2.886 3.428-1.59 2.38-2.63 5.256-2.63 7.92 0 4.572 3.2 7.452 6.12 8.437.524.178.874.3.874.3l.05-.026c.677.315 1.443.54 2.243.66l.146.016c.374.033.748.05 1.122.05.374 0 .748-.017 1.122-.05l.146-.016c.8-.12 1.566-.345 2.242-.66l.05.025s.35-.12.875-.3c2.92-.985 6.12-3.865 6.12-8.437 0-2.664-1.082-5.498-2.67-7.878-.814-1.217-1.848-2.4-2.886-3.428z"/>
             </svg>
-            MongoDB Easy
+            Mongeesy
           </Link>
           <div className="flex items-center gap-4">
             <a href="#features" className="text-xs text-slate-500 hover:text-slate-800 hidden sm:inline">Features</a>
             <a href="#curriculum" className="text-xs text-slate-500 hover:text-slate-800 hidden sm:inline">Curriculum</a>
             <Link to="/learn/playground" className="text-xs text-indigo-600 hover:text-indigo-800 hidden sm:inline font-medium">Playground</Link>
             <a
-              href="https://github.com/Goldenhub/mongodb-easy"
+              href="https://github.com/Goldenhub/mongeesy"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1 text-xs text-slate-500 hover:text-yellow-500 transition-colors"
@@ -301,7 +301,7 @@ export default function LandingPage() {
 
       <footer className="border-t border-slate-200 bg-slate-50/50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-1 py-3 sm:h-14">
-          <span className="text-xs text-slate-400">MongoDB Easy — a free, in-browser MongoDB playground</span>
+          <span className="text-xs text-slate-400">Mongeesy — a free, in-browser MongoDB playground</span>
             <span className="text-xs text-slate-40 text-center">
             Created by <a href="https://github.com/goldenhub" target="_blank" rel="noopener noreferrer" className="text-[#47A248] underline hover:brightness-75">goldenhub</a>
             {' '}&bull;{' '}

@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react'
 
-const STORAGE_KEY = 'mongodb-easy-progress'
+const STORAGE_KEY = 'mongeesy-progress'
 const APP_VERSION = '1.0.0'
 
 function loadData() {

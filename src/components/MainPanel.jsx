@@ -300,7 +300,7 @@ export default function MainPanel({
                   </svg>
                 </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-1">All Lessons Completed!</h3>
-                <p className="text-sm text-slate-600 mb-4">You finished all {totalLessons} lessons in the MongoDB Easy tutorial.</p>
+                <p className="text-sm text-slate-600 mb-4">You finished all {totalLessons} lessons in the Mongeesy tutorial.</p>
                 <div className="flex items-center justify-center gap-6 mb-4">
                   <div className="text-center">
                     <div className="text-2xl font-bold text-[#47A248]">{totalLessons}</div>
