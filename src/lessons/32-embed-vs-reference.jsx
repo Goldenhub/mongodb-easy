@@ -47,6 +47,9 @@ const lesson = {
       <p className="font-semibold text-indigo-700">
         Use referencing when data is shared across many documents or grows independently.
       </p>
+      <p className="mt-3">
+        When you query referenced data and want the related fields in your result, use <code>$lookup</code> in an aggregation pipeline. It joins the collections and adds the referenced documents as an array field (see lesson 26).
+      </p>
 
       <div className="mt-4 p-4 bg-indigo-50 border border-indigo-200 rounded-lg">
         <p className="text-sm text-indigo-900 font-semibold mb-1">MongoDB's guiding principle:</p>
