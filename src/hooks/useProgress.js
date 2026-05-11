@@ -7,12 +7,17 @@ const APP_VERSION = '1.0.0'
 function loadData() {
   try {
     const oldStored = localStorage.getItem(OLD_STORAGE_KEY)
-    if (oldStored && !localStorage.getItem(STORAGE_KEY)) {
-      localStorage.setItem(STORAGE_KEY, oldStored)
+    const newStored = localStorage.getItem(STORAGE_KEY)
+
+    let stored
+    if (oldStored) {
+      stored = oldStored
+      localStorage.setItem(STORAGE_KEY, stored)
       localStorage.removeItem(OLD_STORAGE_KEY)
+    } else {
+      stored = newStored
     }
 
-    const stored = localStorage.getItem(STORAGE_KEY)
     if (!stored) return defaultData()
 
     const parsed = JSON.parse(stored)
