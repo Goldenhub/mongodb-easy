@@ -26,6 +26,7 @@ export default function MainPanel({
 }) {
   const [showHint, setShowHint] = useState(false)
   const [hintIndex, setHintIndex] = useState(0)
+  const [showMobileCollections, setShowMobileCollections] = useState(false)
   const prevMatch = useRef(null)
 
   const hints = lesson?.hints ?? (lesson?.hint ? [lesson.hint] : null)
@@ -89,11 +90,26 @@ export default function MainPanel({
         }
       `}</style>
       {isSandbox ? (
-        <div className="flex-1 flex overflow-hidden">
+        <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
           <div className="flex-1 overflow-y-auto p-6 space-y-5">
             <div className="prose prose-slate prose-sm max-w-none text-slate-700 leading-relaxed">
               {lesson.explanation}
             </div>
+
+            <button
+              onClick={() => setShowMobileCollections(!showMobileCollections)}
+              className="lg:hidden w-full flex items-center justify-between px-4 py-2.5 text-xs font-semibold text-slate-500 uppercase tracking-wider bg-slate-50 border border-slate-200 rounded-lg hover:bg-slate-100 transition-colors"
+            >
+              Collections
+              <svg className={`w-3.5 h-3.5 transition-transform ${showMobileCollections ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 16 16">
+                <path d="M4 6l4 4 4-4" />
+              </svg>
+            </button>
+            {showMobileCollections && (
+              <div className="lg:hidden border border-slate-200 rounded-lg p-4 bg-slate-50/50">
+                <SchemaViewer collections={lesson.collections} />
+              </div>
+            )}
 
             <QueryEditor
               value={query}
@@ -126,13 +142,13 @@ export default function MainPanel({
               />
             )}
           </div>
-          <div className="w-80 shrink-0 overflow-y-auto p-6 border-l border-slate-200 bg-slate-50/50">
+          <div className="hidden lg:block w-80 shrink-0 overflow-y-auto p-6 lg:border-l border-slate-200 bg-slate-50/50">
             <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Collections</div>
             <SchemaViewer collections={lesson.collections} />
           </div>
         </div>
       ) : (
-        <div className="flex-1 flex overflow-hidden">
+        <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
           <div className="flex-1 overflow-y-auto p-6 space-y-5">
             <div>
               <div className="flex items-center gap-2 mb-1">
@@ -160,6 +176,21 @@ export default function MainPanel({
             <div className="prose prose-slate prose-sm max-w-none text-slate-700 leading-relaxed">
               {lesson.explanation}
             </div>
+
+            <button
+              onClick={() => setShowMobileCollections(!showMobileCollections)}
+              className="lg:hidden w-full flex items-center justify-between px-4 py-2.5 text-xs font-semibold text-slate-500 uppercase tracking-wider bg-slate-50 border border-slate-200 rounded-lg hover:bg-slate-100 transition-colors"
+            >
+              Collections
+              <svg className={`w-3.5 h-3.5 transition-transform ${showMobileCollections ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 16 16">
+                <path d="M4 6l4 4 4-4" />
+              </svg>
+            </button>
+            {showMobileCollections && (
+              <div className="lg:hidden border border-slate-200 rounded-lg p-4 bg-slate-50/50">
+                <SchemaViewer collections={lesson.collections} />
+              </div>
+            )}
 
             <div className="bg-white border-l-4 border-[#47A248] rounded-r-lg shadow-sm px-4 py-3">
               <div className="flex items-center gap-2 mb-1.5">
@@ -348,7 +379,7 @@ export default function MainPanel({
               </div>
             )}
           </div>
-          <div className="w-80 shrink-0 overflow-y-auto p-6 border-l border-slate-200 bg-slate-50/50">
+          <div className="hidden lg:block w-80 shrink-0 overflow-y-auto p-6 lg:border-l border-slate-200 bg-slate-50/50">
             <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Collections</div>
             <SchemaViewer collections={lesson.collections} />
           </div>
