@@ -83,6 +83,32 @@ src/
 
 The query engine parses MongoDB shell syntax, executes against in-memory collections, and compares results using deep equality. All data is pre-loaded sample datasets — no network requests needed.
 
+## Architecture
+
+The custom MongoDB query engine is split into five modules in `src/engine/`, each with a single responsibility:
+
+### `mongosh-parser.js`
+Tokenizes MongoDB shell syntax (`db.books.find({ ... }).sort({ ... })`) into structured command objects. Handles nested parentheses, string literals, regex patterns, and chained methods. Uses `new Function` to evaluate raw JS argument strings into real objects.
+
+### `operators.js`
+Evaluates query filters against documents. Supports all major operators: `$gt`, `$in`, `$regex`, `$and`/`$or`, `$expr`, `$elemMatch`, `$where`. Resolves dotted field paths like `address.city`.
+
+### `collection.js`
+In-memory document array with CRUD methods: `find`, `insertOne`, `updateMany`, `deleteOne`, `distinct`, `aggregate`. Applies projections, update operators (`$set`, `$inc`, `$push`, `$pull`), and auto-generates sequential numeric `_id` values.
+
+### `pipeline-engine.js`
+Aggregation pipeline executor. Stages (`$match`, `$group`, `$lookup`, `$bucket`, `$facet`) are applied sequentially against cloned documents. Expression resolution handles computed fields, conditionals (`$cond`), arithmetic, and accumulators (`$sum`, `$avg`, `$push`).
+
+### `query-engine.js`
+Top-level `Database` class. On `execute(query)`:
+1. Parses the query string via `mongosh-parser.js`
+2. Evaluates arguments to real JS values
+3. Dispatches to the right `Collection` method
+4. Applies chained cursor methods (`.sort()`, `.limit()`, `.count()`)
+5. Returns `{ result, collection, method }`
+
+All data lives in memory — no network, no server. Documents are deep-cloned to prevent mutation. The `$lookup` stage references other collections via a shared collections map.
+
 ## Analytics
 
 PostHog analytics is built in but disabled by default. Set `VITE_PUBLIC_POSTHOG_KEY` in `.env` to enable.
