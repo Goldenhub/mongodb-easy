@@ -1,6 +1,6 @@
 # MongoDB Easy
 
-An interactive, in-browser MongoDB tutorial. Write real MongoDB queries against real data and get instant feedback — no setup, no signup, no cloud.
+An interactive, in-browser MongoDB playground. Write real MongoDB queries against real data and get instant feedback — no setup, no signup, no cloud.
 
 ## Features
 
@@ -14,17 +14,17 @@ An interactive, in-browser MongoDB tutorial. Write real MongoDB queries against 
 
 ## Tech Stack
 
-| Tool | Purpose |
-|---|---|
-| **React 19** | UI framework |
-| **Vite 8** | Dev server and bundler |
-| **Tailwind CSS v4** | Utility-first styling |
-| **React Router v7** | Client-side routing |
-| **Monaco Editor** | In-browser code editor |
-| **PostHog** | Product analytics (optional) |
-| **canvas-confetti** | Celebration animations |
-| **Vitest** | Unit testing |
-| **ESLint** | Linting |
+| Tool                | Purpose                      |
+| ------------------- | ---------------------------- |
+| **React 19**        | UI framework                 |
+| **Vite 8**          | Dev server and bundler       |
+| **Tailwind CSS v4** | Utility-first styling        |
+| **React Router v7** | Client-side routing          |
+| **Monaco Editor**   | In-browser code editor       |
+| **PostHog**         | Product analytics (optional) |
+| **canvas-confetti** | Celebration animations       |
+| **Vitest**          | Unit testing                 |
+| **ESLint**          | Linting                      |
 
 ## Getting Started
 
@@ -37,10 +37,10 @@ Open the local URL shown in the terminal (usually `http://localhost:5173`).
 
 ### Environment Variables
 
-| Variable | Required | Default | Description |
-|---|---|---|---|
-| `VITE_PUBLIC_POSTHOG_KEY` | No | — | PostHog project API key for analytics |
-| `VITE_PUBLIC_POSTHOG_HOST` | No | `https://us.i.posthog.com` | PostHog instance host |
+| Variable                   | Required | Default                    | Description                           |
+| -------------------------- | -------- | -------------------------- | ------------------------------------- |
+| `VITE_PUBLIC_POSTHOG_KEY`  | No       | —                          | PostHog project API key for analytics |
+| `VITE_PUBLIC_POSTHOG_HOST` | No       | `https://us.i.posthog.com` | PostHog instance host                 |
 
 Analytics is a no-op when the key is not set, so you can develop without it.
 
@@ -48,13 +48,13 @@ Analytics is a no-op when the key is not set, so you can develop without it.
 
 ## Scripts
 
-| Command | Description |
-|---|---|
-| `npm run dev` | Start the Vite dev server with HMR |
-| `npm run build` | Build for production into `dist/` |
+| Command           | Description                          |
+| ----------------- | ------------------------------------ |
+| `npm run dev`     | Start the Vite dev server with HMR   |
+| `npm run build`   | Build for production into `dist/`    |
 | `npm run preview` | Preview the production build locally |
-| `npm run lint` | Run ESLint across all source files |
-| `npm run test` | Run unit tests with Vitest |
+| `npm run lint`    | Run ESLint across all source files   |
+| `npm run test`    | Run unit tests with Vitest           |
 
 ## Project Structure
 
@@ -89,18 +89,18 @@ PostHog analytics is built in but disabled by default. Set `VITE_PUBLIC_POSTHOG_
 
 The following events are tracked when analytics is active:
 
-| Event | When |
-|---|---|
-| `$pageview` | Every page navigation |
-| `cta_clicked` | Click on any "Start learning" / CTA button on the landing page |
-| `lesson_started` | User opens a lesson |
-| `query_run` | User executes a query (includes `matched` and `total_attempts`) |
-| `lesson_completed` | User gets the correct answer |
-| `module_completed` | All lessons in a module are finished |
-| `all_lessons_completed` | All 32 lessons are finished |
-| `query_error` | Query throws a parse or execution error |
-| `query_reset` | User presses the Reset button |
-| `hint_viewed` | User opens a hint or navigates between hints |
+| Event                   | When                                                            |
+| ----------------------- | --------------------------------------------------------------- |
+| `$pageview`             | Every page navigation                                           |
+| `cta_clicked`           | Click on any "Start learning" / CTA button on the landing page  |
+| `lesson_started`        | User opens a lesson                                             |
+| `query_run`             | User executes a query (includes `matched` and `total_attempts`) |
+| `lesson_completed`      | User gets the correct answer                                    |
+| `module_completed`      | All lessons in a module are finished                            |
+| `all_lessons_completed` | All 32 lessons are finished                                     |
+| `query_error`           | Query throws a parse or execution error                         |
+| `query_reset`           | User presses the Reset button                                   |
+| `hint_viewed`           | User opens a hint or navigates between hints                    |
 
 No personal data is collected. Events are associated with a random anonymous ID stored in localStorage.
 
@@ -163,23 +163,23 @@ export default lesson
 
 ### Lesson fields reference
 
-| Field | Required | Description |
-|---|---|---|
-| `id` | yes | Unique integer. Must match the order in the `lessons` array. |
-| `title` | yes | Short display name. |
-| `module` | yes | Module name shown in the header. |
-| `description` | yes | One-line summary for meta/SEO. |
-| `explanation` | yes | JSX — the main teaching content. |
-| `task` | yes | What the user needs to do. |
-| `defaultQuery` | yes | The query string that passes the lesson. Used by tests. |
-| `collections` | yes | Object mapping collection names to their data arrays. |
-| `expectedResult` | yes | Array of documents the correct query produces. |
-| `hints` | no | Array of progressive hint strings. |
-| `howItWorks` | no | JSX — expandable "How it works" box. |
-| `realWorldUse` | no | JSX — expandable "Real-world use" box. |
-| `commonMistakes` | no | JSX — expandable "Common mistakes" box. |
-| `syntaxBreakdown` | no | Object with `query` string and `parts` array. |
-| `dataFlow` | no | Array of stage name strings for pipeline visualization. |
+| Field             | Required | Description                                                  |
+| ----------------- | -------- | ------------------------------------------------------------ |
+| `id`              | yes      | Unique integer. Must match the order in the `lessons` array. |
+| `title`           | yes      | Short display name.                                          |
+| `module`          | yes      | Module name shown in the header.                             |
+| `description`     | yes      | One-line summary for meta/SEO.                               |
+| `explanation`     | yes      | JSX — the main teaching content.                             |
+| `task`            | yes      | What the user needs to do.                                   |
+| `defaultQuery`    | yes      | The query string that passes the lesson. Used by tests.      |
+| `collections`     | yes      | Object mapping collection names to their data arrays.        |
+| `expectedResult`  | yes      | Array of documents the correct query produces.               |
+| `hints`           | no       | Array of progressive hint strings.                           |
+| `howItWorks`      | no       | JSX — expandable "How it works" box.                         |
+| `realWorldUse`    | no       | JSX — expandable "Real-world use" box.                       |
+| `commonMistakes`  | no       | JSX — expandable "Common mistakes" box.                      |
+| `syntaxBreakdown` | no       | Object with `query` string and `parts` array.                |
+| `dataFlow`        | no       | Array of stage name strings for pipeline visualization.      |
 
 ## Testing
 
@@ -202,15 +202,15 @@ When adding a new lesson, write the `defaultQuery` and `expectedResult` first, t
 ```js
 lessons.forEach((lesson) => {
   it(`lesson ${lesson.id}: ${lesson.title}`, () => {
-    const db = new Database(lesson.collections)
-    const { result } = db.execute(lesson.defaultQuery)
-    const resultArray = Array.isArray(result) ? result : [result]
-    const match = compareResults(resultArray, lesson.expectedResult)
+    const db = new Database(lesson.collections);
+    const { result } = db.execute(lesson.defaultQuery);
+    const resultArray = Array.isArray(result) ? result : [result];
+    const match = compareResults(resultArray, lesson.expectedResult);
     if (!match) {
-      expect(resultArray).toEqual(lesson.expectedResult)
+      expect(resultArray).toEqual(lesson.expectedResult);
     }
-  })
-})
+  });
+});
 ```
 
 ## License

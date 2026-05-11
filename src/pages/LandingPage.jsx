@@ -299,7 +299,7 @@ export default function LandingPage() {
 
       <footer className="border-t border-slate-200 bg-slate-50/50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-1 py-3 sm:h-14">
-          <span className="text-xs text-slate-400">MongoDB Easy — a free, in-browser MongoDB tutorial</span>
+          <span className="text-xs text-slate-400">MongoDB Easy — a free, in-browser MongoDB playground</span>
             <span className="text-xs text-slate-40 text-center">
             Created by <a href="https://github.com/goldenhub" target="_blank" rel="noopener noreferrer" className="text-[#47A248] underline hover:brightness-75">goldenhub</a>
             {' '}&bull;{' '}
