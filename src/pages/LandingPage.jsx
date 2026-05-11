@@ -98,7 +98,7 @@ export default function LandingPage() {
           <div className="flex items-center gap-4">
             <a href="#features" className="text-xs text-slate-500 hover:text-slate-800 hidden sm:inline">Features</a>
             <a href="#curriculum" className="text-xs text-slate-500 hover:text-slate-800 hidden sm:inline">Curriculum</a>
-            <Link to="/learn/sandbox" className="text-xs text-indigo-600 hover:text-indigo-800 hidden sm:inline font-medium">Playground</Link>
+            <Link to="/learn/playground" className="text-xs text-indigo-600 hover:text-indigo-800 hidden sm:inline font-medium">Playground</Link>
             <a
               href="https://github.com/Goldenhub/mongodb-easy"
               target="_blank"
@@ -133,7 +133,7 @@ export default function LandingPage() {
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-2 sm:px-0">
             <Link
-              to="/learn/sandbox"
+              to="/learn/playground"
               onClick={() => captureCtaClicked('Open Playground', 'hero')}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#47A248] text-white font-medium rounded-lg hover:bg-[#3a8a3e] transition-colors text-sm whitespace-nowrap"
             >

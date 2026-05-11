@@ -19,7 +19,7 @@ export default function LearnPage() {
   const { lessonId: lessonIdParam } = useParams()
   const navigate = useNavigate()
   const initialLessonId = lessonIdParam
-    ? (lessonIdParam === 'sandbox' ? SANDBOX_LESSON_ID : Number(lessonIdParam))
+    ? (lessonIdParam === 'playground' ? SANDBOX_LESSON_ID : Number(lessonIdParam))
     : (lessons[0]?.id ?? null)
 
   const [currentLessonId, setCurrentLessonId] = useState(initialLessonId)
@@ -71,7 +71,7 @@ export default function LearnPage() {
     setMatch(null)
     setError(null)
     if (isNarrow) setSidebarOpen(false)
-    navigate(id === SANDBOX_LESSON_ID ? '/learn/sandbox' : `/learn/${id}`, { replace: true })
+    navigate(id === SANDBOX_LESSON_ID ? '/learn/playground' : `/learn/${id}`, { replace: true })
   }, [isNarrow, navigate])
 
   const handleQueryChange = useCallback((val) => {
