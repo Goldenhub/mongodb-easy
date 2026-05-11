@@ -47,6 +47,13 @@ const lesson = {
       <p className="font-semibold text-indigo-700">
         Use referencing when data is shared across many documents or grows independently.
       </p>
+
+      <div className="mt-4 p-4 bg-indigo-50 border border-indigo-200 rounded-lg">
+        <p className="text-sm text-indigo-900 font-semibold mb-1">MongoDB's guiding principle:</p>
+        <p className="text-sm text-indigo-800 italic">
+          "Data that is accessed together should be stored together."
+        </p>
+      </div>
     </>
   ),
 
