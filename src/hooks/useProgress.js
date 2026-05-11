@@ -1,10 +1,17 @@
 import { useState, useCallback, useEffect } from 'react'
 
 const STORAGE_KEY = 'mongeesy-progress'
+const OLD_STORAGE_KEY = 'mongodb-easy-progress'
 const APP_VERSION = '1.0.0'
 
 function loadData() {
   try {
+    const oldStored = localStorage.getItem(OLD_STORAGE_KEY)
+    if (oldStored && !localStorage.getItem(STORAGE_KEY)) {
+      localStorage.setItem(STORAGE_KEY, oldStored)
+      localStorage.removeItem(OLD_STORAGE_KEY)
+    }
+
     const stored = localStorage.getItem(STORAGE_KEY)
     if (!stored) return defaultData()
 
