@@ -5,7 +5,7 @@ import ResultsPane from './ResultsPane.jsx'
 import SchemaViewer from './SchemaViewer.jsx'
 import { HowItWorks, RealWorldUse, CommonMistakes, SyntaxBreakdown, DataFlow } from './ConceptBox.jsx'
 import { getModuleForLesson, getShortModuleName } from '../utils/modules.js'
-import { captureHintViewed } from '../lib/phuglytics.js'
+import { captureHintViewed, captureCollectionsPanelOpened } from '../lib/phuglytics.js'
 
 export default function MainPanel({
   lesson,
@@ -97,7 +97,7 @@ export default function MainPanel({
             </div>
 
             <button
-              onClick={() => setShowMobileCollections(!showMobileCollections)}
+              onClick={() => setShowMobileCollections((v) => { const next = !v; if (next) captureCollectionsPanelOpened(); return next; })}
               className="lg:hidden w-full flex items-center justify-between px-4 py-2.5 text-xs font-semibold text-slate-500 uppercase tracking-wider bg-slate-50 border border-slate-200 rounded-lg hover:bg-slate-100 transition-colors"
             >
               Collections
@@ -178,7 +178,7 @@ export default function MainPanel({
             </div>
 
             <button
-              onClick={() => setShowMobileCollections(!showMobileCollections)}
+              onClick={() => setShowMobileCollections((v) => { const next = !v; if (next) captureCollectionsPanelOpened(); return next; })}
               className="lg:hidden w-full flex items-center justify-between px-4 py-2.5 text-xs font-semibold text-slate-500 uppercase tracking-wider bg-slate-50 border border-slate-200 rounded-lg hover:bg-slate-100 transition-colors"
             >
               Collections

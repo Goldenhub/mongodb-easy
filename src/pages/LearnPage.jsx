@@ -6,7 +6,7 @@ import { useProgress } from '../hooks/useProgress.js'
 import { Database } from '../engine/query-engine.js'
 import { ParseError } from '../engine/mongosh-parser.js'
 import { compareResults } from '../utils/compare-results.js'
-import { captureLessonStarted, captureQueryRun, captureLessonCompleted, captureError, captureModuleCompleted, captureAllLessonsCompleted, captureQueryReset, captureException } from '../lib/phuglytics.js'
+import { captureLessonStarted, captureQueryRun, captureLessonCompleted, captureError, captureModuleCompleted, captureAllLessonsCompleted, captureQueryReset, captureException, capturePlaygroundOpened } from '../lib/phuglytics.js'
 import { getModuleForLesson } from '../utils/modules.js'
 import lessons from '../lessons/index.js'
 import { PLAYGROUND_LESSON_ID, playgroundLesson } from '../lib/playground.jsx'
@@ -51,6 +51,7 @@ export default function LearnPage() {
         setMatch(null)
         setError(null)
         dbRef.current = new Database(currentLesson.collections)
+        capturePlaygroundOpened()
       } else {
         const saved = lessonStates[String(currentLessonId)]
         // eslint-disable-next-line react-hooks/set-state-in-effect

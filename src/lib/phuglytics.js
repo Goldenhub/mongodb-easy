@@ -92,6 +92,21 @@ export function captureQueryReset(lessonId) {
   })
 }
 
+export function capturePlaygroundOpened() {
+  if (!ENABLED) return
+  posthog.capture('playground_opened')
+}
+
+export function captureCollectionsPanelOpened() {
+  if (!ENABLED) return
+  posthog.capture('collections_panel_opened')
+}
+
+export function captureResultViewToggled(view) {
+  if (!ENABLED) return
+  posthog.capture('result_view_toggled', { view })
+}
+
 export function captureException(error) {
   if (!ENABLED) return
   posthog.captureException(error)

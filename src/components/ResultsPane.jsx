@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { captureResultViewToggled } from '../lib/phuglytics.js'
 
 function DocTable({ docs, label }) {
   if (!docs || docs.length === 0) {
@@ -138,13 +139,14 @@ function Panel({ label, docs, view }) {
 
 export default function ResultsPane({ yourResult, expectedResult, match, isSandbox }) {
   const [view, setView] = useState('table')
+  const handleViewChange = (v) => { setView(v); captureResultViewToggled(v) }
 
   if (isSandbox) {
     return (
       <div>
         <div className="flex items-center gap-3 mb-2">
           <h3 className="text-sm font-semibold text-slate-700">Results</h3>
-          <ViewToggle view={view} onChange={setView} />
+          <ViewToggle view={view} onChange={handleViewChange} />
         </div>
         <Panel label="Your Result" docs={yourResult} view={view} />
       </div>
@@ -156,7 +158,7 @@ export default function ResultsPane({ yourResult, expectedResult, match, isSandb
       <div className="flex items-center gap-3 mb-2">
         <h3 className="text-sm font-semibold text-slate-700">Results</h3>
         <CompareBadge match={match} />
-        <ViewToggle view={view} onChange={setView} />
+        <ViewToggle view={view} onChange={handleViewChange} />
       </div>
       <div className="grid grid-cols-2 gap-3">
         <Panel label="Your Result" docs={yourResult} view={view} />
