@@ -98,6 +98,7 @@ export default function LandingPage() {
           <div className="flex items-center gap-4">
             <a href="#features" className="text-xs text-slate-500 hover:text-slate-800 hidden sm:inline">Features</a>
             <a href="#curriculum" className="text-xs text-slate-500 hover:text-slate-800 hidden sm:inline">Curriculum</a>
+            <Link to="/learn/sandbox" className="text-xs text-amber-600 hover:text-amber-800 hidden sm:inline font-medium">Sandbox</Link>
             <a
               href="https://github.com/Goldenhub/mongodb-easy"
               target="_blank"
@@ -147,6 +148,16 @@ export default function LandingPage() {
             >
               See the curriculum
             </a>
+          </div>
+          <div className="mt-4 flex items-center justify-center gap-2">
+            <span className="text-xs text-slate-400">or</span>
+            <Link
+              to="/learn/sandbox"
+              onClick={() => captureCtaClicked('Try the sandbox', 'hero')}
+              className="inline-flex items-center gap-1.5 text-xs font-medium text-amber-700 hover:text-amber-800 underline underline-offset-2"
+            >
+              jump straight to the sandbox
+            </Link>
           </div>
         </div>
 
