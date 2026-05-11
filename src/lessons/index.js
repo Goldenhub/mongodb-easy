@@ -30,6 +30,7 @@ import lesson28 from './28-dates.jsx'
 import lesson29 from './29-slice.jsx'
 import lesson30 from './30-bucket.jsx'
 import lesson31 from './31-facet.jsx'
+import lesson32 from './32-embed-vs-reference.jsx'
 
 const lessons = [
   lesson00,
@@ -39,7 +40,7 @@ const lessons = [
   lesson16, lesson17, lesson18, lesson19, lesson20,
   lesson21, lesson22, lesson23, lesson24, lesson25,
   lesson26, lesson27, lesson28, lesson29, lesson30,
-  lesson31,
+  lesson31, lesson32,
 ]
 
 export default lessons

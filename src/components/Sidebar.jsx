@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { getModuleBoundaries } from '../utils/modules.js'
+import { SANDBOX_LESSON_ID } from '../lib/sandbox.jsx'
 
 export default function Sidebar({ lessons, currentLessonId, lessonStates, onSelectLesson }) {
   const moduleBoundaries = useMemo(() => getModuleBoundaries(lessons.length), [lessons.length])
@@ -33,6 +34,25 @@ export default function Sidebar({ lessons, currentLessonId, lessonStates, onSele
       </div>
 
       <nav className="flex-1 overflow-y-auto scrollbar-thin py-2">
+        <div className="px-4 py-1.5 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+          Playground
+        </div>
+        <button
+          onClick={() => onSelectLesson(SANDBOX_LESSON_ID)}
+          className={`w-full text-left px-4 py-1.5 flex items-center gap-2 text-sm transition-colors ${
+            currentLessonId === SANDBOX_LESSON_ID
+              ? 'bg-green-50 text-green-800 border-l-2 border-[#47A248]'
+              : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 border-l-2 border-transparent'
+          }`}
+        >
+          <span className="w-5 h-5 rounded-full flex items-center justify-center text-xs shrink-0 bg-slate-200 text-slate-500">
+            <svg className="w-3 h-3" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M6.5 1.5a.5.5 0 01.5.5v3.5h3.5a.5.5 0 010 1H7v3.5a.5.5 0 01-1 0V6.5H2.5a.5.5 0 010-1H6V2a.5.5 0 01.5-.5z"/>
+              <path d="M13 7.5a.5.5 0 01.5.5v5.5a.5.5 0 01-.5.5H3a.5.5 0 01-.5-.5V9a.5.5 0 011 0v4h9V8a.5.5 0 01.5-.5z"/>
+            </svg>
+          </span>
+          <span className="truncate">Sandbox</span>
+        </button>
         {lessons.filter((l) => l.id === 0).map((lesson) => {
           const state = lessonStates[String(lesson.id)]
           const done = state?.completed === true

@@ -6,7 +6,7 @@ An interactive, in-browser MongoDB tutorial. Write real MongoDB queries against 
 
 - **Real MongoDB queries** — Type real `find()`, `aggregate()`, `sort()`, `group()`, `lookup()` syntax. A custom query engine runs it all in your browser.
 - **Immediate feedback** — See your result side-by-side with the expected output. Know instantly if you got it right.
-- **31 progressive lessons** — Start with `find()` and work up to `$bucket`, `$facet`, and `$lookup`. Five modules covering reading, aggregation, writes, advanced queries, and analytical patterns.
+- **32 progressive lessons** — Start with `find()` and work up to `$bucket`, `$facet`, and `$lookup`. Five modules covering reading, aggregation, writes, advanced queries, and analytical patterns.
 - **Hints that guide** — Progressive hints for each lesson that point you in the right direction without giving away the answer.
 - **No signup, no cost** — Everything runs client-side. No account, no email, no credit card.
 - **Progress that persists** — Completed lessons, last query, and attempt counts are saved to localStorage automatically.
@@ -70,7 +70,7 @@ src/
 │   └── collection.js       # Collection class with CRUD operations
 ├── hooks/            # Custom React hooks (useProgress)
 ├── lib/              # Analytics helpers (PostHog)
-├── lessons/          # 31 lesson files (one per concept)
+├── lessons/          # 32 lesson files (one per concept)
 ├── pages/            # LandingPage and LearnPage
 └── utils/            # Helpers (modules, comparison, table formatting)
 ```
@@ -97,7 +97,7 @@ The following events are tracked when analytics is active:
 | `query_run` | User executes a query (includes `matched` and `total_attempts`) |
 | `lesson_completed` | User gets the correct answer |
 | `module_completed` | All lessons in a module are finished |
-| `all_lessons_completed` | All 31 lessons are finished |
+| `all_lessons_completed` | All 32 lessons are finished |
 | `query_error` | Query throws a parse or execution error |
 | `query_reset` | User presses the Reset button |
 | `hint_viewed` | User opens a hint or navigates between hints |
@@ -109,11 +109,11 @@ No personal data is collected. Events are associated with a random anonymous ID 
 Each lesson is a standalone JSX file in `src/lessons/` that exports a lesson object. Here's the pattern:
 
 ```js
-// src/lessons/32-new-concept.jsx
+// src/lessons/33-new-concept.jsx
 import books from '../data/books.js'
 
 const lesson = {
-  id: 32,                           // unique, sequential ID
+  id: 33,                           // unique, sequential ID
   title: '$newOperator - Concept',   // short title
   module: 'Module 3: Modifying Data', // module name (used for display)
   description: 'One-line summary',

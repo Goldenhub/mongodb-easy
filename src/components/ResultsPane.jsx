@@ -1,4 +1,6 @@
-function DocTable({ docs, label, accent }) {
+import { useState } from 'react'
+
+function DocTable({ docs, label }) {
   if (!docs || docs.length === 0) {
     return (
       <div className="p-4 text-sm text-slate-400 italic">
@@ -13,9 +15,9 @@ function DocTable({ docs, label, accent }) {
     <div className="overflow-auto max-h-72">
       <table className="w-full text-xs font-mono border-collapse">
         <thead>
-          <tr className={`${accent === 'green' ? 'bg-[#47A248]/10' : 'bg-blue-50'} sticky top-0`}>
+          <tr className="bg-slate-100 sticky top-0">
             {columns.map((col) => (
-              <th key={col} className="px-3 py-1.5 text-left font-semibold text-slate-600 border-b border-slate-200 whitespace-nowrap">
+              <th key={col} className="px-3 py-1.5 text-left font-semibold text-slate-600 border-b border-slate-300 whitespace-nowrap">
                 {col}
               </th>
             ))}
@@ -23,7 +25,7 @@ function DocTable({ docs, label, accent }) {
         </thead>
         <tbody>
           {docs.map((doc, i) => (
-            <tr key={i} className="border-b border-slate-100 hover:bg-slate-50">
+            <tr key={i} className="border-b border-slate-200 hover:bg-slate-50">
               {columns.map((col) => (
                 <td key={col} className="px-3 py-1 text-slate-700 whitespace-nowrap">
                   {formatCell(doc[col])}
@@ -33,7 +35,27 @@ function DocTable({ docs, label, accent }) {
           ))}
         </tbody>
       </table>
-      <div className="px-3 py-1 text-xs text-slate-400 bg-slate-50 border-t border-slate-200">
+      <div className="px-3 py-1 text-xs text-slate-400 bg-slate-100 border-t border-slate-300">
+        {docs.length} document{docs.length !== 1 ? 's' : ''}
+      </div>
+    </div>
+  )
+}
+
+function DocJson({ docs, label }) {
+  if (!docs || docs.length === 0) {
+    return (
+      <div className="p-4 text-sm text-slate-400 italic">
+        {label === 'Your Result' ? 'Run a query to see results' : 'Expected result shown here'}
+      </div>
+    )
+  }
+  return (
+    <div className="overflow-auto max-h-72">
+      <pre className="p-3 text-xs font-mono text-slate-800 leading-relaxed">
+        {JSON.stringify(docs.length === 1 ? docs[0] : docs, null, 2)}
+      </pre>
+      <div className="px-3 py-1 text-xs text-slate-400 bg-slate-100 border-t border-slate-300">
         {docs.length} document{docs.length !== 1 ? 's' : ''}
       </div>
     </div>
@@ -76,26 +98,69 @@ function CompareBadge({ match }) {
   )
 }
 
-export default function ResultsPane({ yourResult, expectedResult, match }) {
+function ViewToggle({ view, onChange }) {
+  return (
+    <div className="flex items-center bg-slate-200 rounded-md p-0.5 text-xs">
+      <button
+        onClick={() => onChange('table')}
+        className={`px-2 py-0.5 rounded font-medium transition-colors ${
+          view === 'table' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+        }`}
+      >
+        Table
+      </button>
+      <button
+        onClick={() => onChange('json')}
+        className={`px-2 py-0.5 rounded font-medium transition-colors ${
+          view === 'json' ? 'bg-white text-slate-800 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+        }`}
+      >
+        JSON
+      </button>
+    </div>
+  )
+}
+
+function Panel({ label, docs, view }) {
+  return (
+    <div className="border border-slate-300 rounded-lg overflow-hidden">
+      <div className="px-3 py-1.5 bg-slate-100 border-b border-slate-300 text-xs font-semibold text-slate-600">
+        {label}
+      </div>
+      {view === 'json' ? (
+        <DocJson docs={docs} label={label} />
+      ) : (
+        <DocTable docs={docs} label={label} />
+      )}
+    </div>
+  )
+}
+
+export default function ResultsPane({ yourResult, expectedResult, match, isSandbox }) {
+  const [view, setView] = useState('table')
+
+  if (isSandbox) {
+    return (
+      <div>
+        <div className="flex items-center gap-3 mb-2">
+          <h3 className="text-sm font-semibold text-slate-700">Results</h3>
+          <ViewToggle view={view} onChange={setView} />
+        </div>
+        <Panel label="Your Result" docs={yourResult} view={view} />
+      </div>
+    )
+  }
+
   return (
     <div>
       <div className="flex items-center gap-3 mb-2">
         <h3 className="text-sm font-semibold text-slate-700">Results</h3>
         <CompareBadge match={match} />
+        <ViewToggle view={view} onChange={setView} />
       </div>
-      <div className="grid grid-cols-2 gap-3 border border-slate-300 rounded-lg overflow-hidden">
-        <div>
-          <div className="px-3 py-1.5 bg-slate-100 border-b border-slate-300 text-xs font-semibold text-slate-600">
-            Your Result
-          </div>
-          <DocTable docs={yourResult} label="Your Result" accent="green" />
-        </div>
-        <div>
-          <div className="px-3 py-1.5 bg-slate-100 border-b border-slate-300 text-xs font-semibold text-slate-600">
-            Expected Result
-          </div>
-          <DocTable docs={expectedResult} label="Expected Result" accent="blue" />
-        </div>
+      <div className="grid grid-cols-2 gap-3">
+        <Panel label="Your Result" docs={yourResult} view={view} />
+        <Panel label="Expected Result" docs={expectedResult} view={view} />
       </div>
     </div>
   )

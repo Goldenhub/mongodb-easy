@@ -21,7 +21,7 @@ const features = [
     ),
   },
   {
-    title: '31 progressive lessons',
+    title: '32 progressive lessons',
     desc: 'Start with find() and work up to $bucket, $facet, and $lookup. Each lesson builds on the last - no gaps, no jumps.',
     icon: (
       <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="#47A248" strokeWidth="1.5">
@@ -120,16 +120,15 @@ export default function LandingPage() {
       <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-20 pb-16 sm:pt-28 sm:pb-20">
         <div className="text-center">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 border border-green-200 rounded-full text-xs font-medium text-green-700 mb-6">
-            Free &bull; No signup &bull; In-browser
+            Interactive playground &bull; No signup &bull; In-browser
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight tracking-tight">
             Learn MongoDB in{' '}
             <span className="text-[#47A248]">your browser</span>
           </h1>
           <p className="mt-5 text-base sm:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
-            A real MongoDB query engine in your browser. 31 progressive lessons.
-            Type real MongoDB syntax, see results instantly, and build skills that
-            translate directly to production databases.
+            An interactive MongoDB playground with 32 guided lessons. Type real queries,
+            explore collections, see results instantly &mdash; no setup, no signup.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-2 sm:px-0">
             <Link
@@ -137,7 +136,7 @@ export default function LandingPage() {
               onClick={() => captureCtaClicked('Start the first lesson', 'hero')}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#47A248] text-white font-medium rounded-lg hover:bg-[#3a8a3e] transition-colors text-sm whitespace-nowrap"
             >
-              Start the first lesson
+              Open the playground
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 16 16">
                 <path d="M6 3l5 5-5 5" />
               </svg>
@@ -242,7 +241,7 @@ export default function LandingPage() {
               onClick={() => captureCtaClicked('Start learning now', 'how_it_works')}
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#47A248] text-white font-medium rounded-lg hover:bg-[#3a8a3e] transition-colors text-sm whitespace-nowrap"
             >
-              Start learning now
+              Open the playground
             </Link>
           </div>
         </div>
@@ -250,7 +249,7 @@ export default function LandingPage() {
 
       <section id="curriculum" className="border-t border-slate-200 bg-slate-50/50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-3">31 lessons in 5 modules</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-3">32 lessons in 5 modules</h2>
           <p className="text-sm text-slate-500 text-center max-w-lg mx-auto mb-10">
             Start at lesson 1 and progress through, or jump to a topic you need.
           </p>
@@ -290,7 +289,7 @@ export default function LandingPage() {
             onClick={() => captureCtaClicked('Start the first lesson', 'footer_cta')}
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#47A248] text-white font-medium rounded-lg hover:bg-[#3a8a3e] transition-colors text-sm whitespace-nowrap"
           >
-            Start the first lesson
+            Open the playground
             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 16 16">
               <path d="M6 3l5 5-5 5" />
             </svg>

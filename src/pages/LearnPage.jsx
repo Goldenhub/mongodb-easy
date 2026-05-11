@@ -9,6 +9,7 @@ import { compareResults } from '../utils/compare-results.js'
 import { captureLessonStarted, captureQueryRun, captureLessonCompleted, captureError, captureModuleCompleted, captureAllLessonsCompleted, captureQueryReset, captureException } from '../lib/phuglytics.js'
 import { getModuleForLesson } from '../utils/modules.js'
 import lessons from '../lessons/index.js'
+import { SANDBOX_LESSON_ID, sandboxLesson } from '../lib/sandbox.jsx'
 
 const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0
 const modKey = isMac ? '\u2318' : 'Ctrl'
@@ -17,7 +18,9 @@ const placeholderText = `// Enter your MongoDB query here, then press ${modKey}+
 export default function LearnPage() {
   const { lessonId: lessonIdParam } = useParams()
   const navigate = useNavigate()
-  const initialLessonId = lessonIdParam ? Number(lessonIdParam) : (lessons[0]?.id ?? null)
+  const initialLessonId = lessonIdParam
+    ? (lessonIdParam === 'sandbox' ? SANDBOX_LESSON_ID : Number(lessonIdParam))
+    : (lessons[0]?.id ?? null)
 
   const [currentLessonId, setCurrentLessonId] = useState(initialLessonId)
   const [query, setQuery] = useState('')
@@ -29,6 +32,7 @@ export default function LearnPage() {
   const [isNarrow, setIsNarrow] = useState(() => window.matchMedia('(max-width: 767px)').matches)
   const dbRef = useRef(null)
   const { lessonStates, countCompleted, updateLessonState } = useProgress()
+  const isSandbox = currentLessonId === SANDBOX_LESSON_ID
 
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 767px)')
@@ -37,18 +41,26 @@ export default function LearnPage() {
     return () => mq.removeEventListener('change', handler)
   }, [])
 
-  const currentLesson = lessons.find((l) => l.id === currentLessonId) ?? null
+  const currentLesson = isSandbox ? sandboxLesson : (lessons.find((l) => l.id === currentLessonId) ?? null)
 
   useEffect(() => {
     if (currentLesson) {
-      const saved = lessonStates[String(currentLessonId)]
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setQuery(saved?.lastCode || (currentLesson.id === 0 ? currentLesson.defaultQuery : placeholderText))
-      setYourResult(null)
-      setMatch(null)
-      setError(null)
-      dbRef.current = new Database(currentLesson.collections)
-      captureLessonStarted(currentLesson)
+      if (isSandbox) {
+        setQuery(currentLesson.defaultQuery)
+        setYourResult(null)
+        setMatch(null)
+        setError(null)
+        dbRef.current = new Database(currentLesson.collections)
+      } else {
+        const saved = lessonStates[String(currentLessonId)]
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setQuery(saved?.lastCode || (currentLesson.id === 0 ? currentLesson.defaultQuery : placeholderText))
+        setYourResult(null)
+        setMatch(null)
+        setError(null)
+        dbRef.current = new Database(currentLesson.collections)
+        captureLessonStarted(currentLesson)
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentLessonId])
@@ -59,7 +71,7 @@ export default function LearnPage() {
     setMatch(null)
     setError(null)
     if (isNarrow) setSidebarOpen(false)
-    navigate(`/learn/${id}`, { replace: true })
+    navigate(id === SANDBOX_LESSON_ID ? '/learn/sandbox' : `/learn/${id}`, { replace: true })
   }, [isNarrow, navigate])
 
   const handleQueryChange = useCallback((val) => {
@@ -78,6 +90,12 @@ export default function LearnPage() {
         const { result } = dbRef.current.execute(query)
         const resultArray = Array.isArray(result) ? result : [result]
         setYourResult(resultArray)
+
+        if (isSandbox) {
+          setMatch(null)
+          setIsRunning(false)
+          return
+        }
 
         const isMatch = compareResults(resultArray, currentLesson.expectedResult)
         setMatch(isMatch)
@@ -136,23 +154,24 @@ export default function LearnPage() {
         setIsRunning(false)
       }
     }, 100)
-  }, [query, currentLesson, lessonStates, countCompleted, updateLessonState])
+  }, [query, currentLesson, lessonStates, countCompleted, updateLessonState, isSandbox])
 
   const handleNextLesson = useCallback(() => {
+    if (isSandbox) return
     const next = lessons.find((l) => l.id === currentLessonId + 1)
     if (next) handleSelectLesson(next.id)
-  }, [currentLessonId, handleSelectLesson])
+  }, [currentLessonId, handleSelectLesson, isSandbox])
 
   const handleReset = useCallback(() => {
     if (currentLesson) {
       dbRef.current = new Database(currentLesson.collections)
-      setQuery('')
+      setQuery(isSandbox ? currentLesson.defaultQuery : '')
       setYourResult(null)
       setMatch(null)
       setError(null)
       captureQueryReset(currentLesson.id)
     }
-  }, [currentLesson])
+  }, [currentLesson, isSandbox])
 
   return (
     <div className="h-full flex flex-col bg-white">
@@ -243,6 +262,7 @@ export default function LearnPage() {
             lessonStates={lessonStates}
             countCompleted={countCompleted}
             totalLessons={lessons.length}
+            isSandbox={isSandbox}
           />
         ) : (
           <div className="flex-1 flex items-center justify-center text-slate-400">
