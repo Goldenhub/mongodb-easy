@@ -9,7 +9,7 @@ import { compareResults } from '../utils/compare-results.js'
 import { captureLessonStarted, captureQueryRun, captureLessonCompleted, captureError, captureModuleCompleted, captureAllLessonsCompleted, captureQueryReset, captureException } from '../lib/phuglytics.js'
 import { getModuleForLesson } from '../utils/modules.js'
 import lessons from '../lessons/index.js'
-import { SANDBOX_LESSON_ID, sandboxLesson } from '../lib/sandbox.jsx'
+import { PLAYGROUND_LESSON_ID, playgroundLesson } from '../lib/playground.jsx'
 
 const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0
 const modKey = isMac ? '\u2318' : 'Ctrl'
@@ -19,7 +19,7 @@ export default function LearnPage() {
   const { lessonId: lessonIdParam } = useParams()
   const navigate = useNavigate()
   const initialLessonId = lessonIdParam
-    ? (lessonIdParam === 'playground' ? SANDBOX_LESSON_ID : Number(lessonIdParam))
+    ? (lessonIdParam === 'playground' ? PLAYGROUND_LESSON_ID : Number(lessonIdParam))
     : (lessons[0]?.id ?? null)
 
   const [currentLessonId, setCurrentLessonId] = useState(initialLessonId)
@@ -32,7 +32,7 @@ export default function LearnPage() {
   const [isNarrow, setIsNarrow] = useState(() => window.matchMedia('(max-width: 767px)').matches)
   const dbRef = useRef(null)
   const { lessonStates, countCompleted, updateLessonState } = useProgress()
-  const isSandbox = currentLessonId === SANDBOX_LESSON_ID
+  const isSandbox = currentLessonId === PLAYGROUND_LESSON_ID
 
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 767px)')
@@ -41,7 +41,7 @@ export default function LearnPage() {
     return () => mq.removeEventListener('change', handler)
   }, [])
 
-  const currentLesson = isSandbox ? sandboxLesson : (lessons.find((l) => l.id === currentLessonId) ?? null)
+  const currentLesson = isSandbox ? playgroundLesson : (lessons.find((l) => l.id === currentLessonId) ?? null)
 
   useEffect(() => {
     if (currentLesson) {
@@ -71,7 +71,7 @@ export default function LearnPage() {
     setMatch(null)
     setError(null)
     if (isNarrow) setSidebarOpen(false)
-    navigate(id === SANDBOX_LESSON_ID ? '/learn/playground' : `/learn/${id}`, { replace: true })
+    navigate(id === PLAYGROUND_LESSON_ID ? '/learn/playground' : `/learn/${id}`, { replace: true })
   }, [isNarrow, navigate])
 
   const handleQueryChange = useCallback((val) => {

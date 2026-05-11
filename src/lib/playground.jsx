@@ -4,12 +4,12 @@ import products from '../data/products.js'
 import patrons from '../data/patrons.js'
 import loans from '../data/loans.js'
 
-export const SANDBOX_LESSON_ID = -1
+export const PLAYGROUND_LESSON_ID = -1
 
 export const allCollections = { books, authors, products, patrons, loans }
 
-export const sandboxLesson = {
-  id: SANDBOX_LESSON_ID,
+export const playgroundLesson = {
+  id: PLAYGROUND_LESSON_ID,
   title: 'Playground',
   description: null,
   explanation: (

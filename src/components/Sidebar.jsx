@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { getModuleBoundaries } from '../utils/modules.js'
-import { SANDBOX_LESSON_ID } from '../lib/sandbox.jsx'
+import { PLAYGROUND_LESSON_ID } from '../lib/playground.jsx'
 
 export default function Sidebar({ lessons, currentLessonId, lessonStates, onSelectLesson }) {
   const moduleBoundaries = useMemo(() => getModuleBoundaries(lessons.length), [lessons.length])
@@ -35,9 +35,9 @@ export default function Sidebar({ lessons, currentLessonId, lessonStates, onSele
 
       <div className="px-3 py-2 border-b border-slate-200">
         <button
-          onClick={() => onSelectLesson(SANDBOX_LESSON_ID)}
+          onClick={() => onSelectLesson(PLAYGROUND_LESSON_ID)}
           className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-            currentLessonId === SANDBOX_LESSON_ID
+            currentLessonId === PLAYGROUND_LESSON_ID
               ? 'bg-indigo-50 text-indigo-700 border border-indigo-200'
               : 'bg-indigo-50/60 text-indigo-600 border border-indigo-200 hover:bg-indigo-100 hover:text-indigo-700'
           }`}
