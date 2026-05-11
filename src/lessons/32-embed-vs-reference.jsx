@@ -5,7 +5,7 @@ import authors from '../data/authors.js'
 const lesson = {
   id: 32,
   title: 'Embedding vs Referencing',
-  module: 'Module 5: Data Modeling',
+  module: 'Module 5: Power User',
   description: 'When to embed related data vs reference other collections',
 
   explanation: (

@@ -62,8 +62,8 @@ const modules = [
   { name: 'Reading Data', range: '1-8', desc: 'find(), projections, filters, comparison and logical operators, sorting, pagination.' },
   { name: 'Aggregation Pipeline', range: '9-16', desc: '$match, $project, $group, $sort, $limit, $unwind, $addFields, $count.' },
   { name: 'Writing Data', range: '17-21', desc: 'insert, update, delete, array update operators ($push, $pop, $pull).' },
-  { name: 'Advanced Queries', range: '22-28', desc: '$regex, $exists, $expr, $elemMatch, $lookup, $cond, $ifNull, dates.' },
-  { name: 'Power User', range: '29-31', desc: '$slice, $bucket, $facet - real-world analytical patterns.' },
+  { name: 'Advanced Queries', range: '22-27', desc: '$regex, $exists, $expr, $elemMatch, $lookup, $cond, $ifNull, dates.' },
+  { name: 'Power User', range: '28-32', desc: '$slice, $bucket, $facet, embedding vs referencing - real-world patterns.' },
 ]
 
 const steps = [
@@ -177,7 +177,7 @@ export default function LandingPage() {
 
         <div className="mt-10 flex items-center justify-center gap-8 sm:gap-12 text-center">
           <div>
-            <div className="text-2xl sm:text-3xl font-bold text-slate-900">31</div>
+            <div className="text-2xl sm:text-3xl font-bold text-slate-900">32</div>
             <div className="text-xs text-slate-400 mt-0.5">lessons</div>
           </div>
           <div className="w-px h-10 bg-slate-200" />
