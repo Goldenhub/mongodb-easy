@@ -101,6 +101,9 @@ The following events are tracked when analytics is active:
 | `query_error`           | Query throws a parse or execution error                         |
 | `query_reset`           | User presses the Reset button                                   |
 | `hint_viewed`           | User opens a hint or navigates between hints                    |
+| `playground_opened`     | User enters the free-form playground mode                       |
+| `collections_panel_opened` | User opens the collections panel on mobile                   |
+| `result_view_toggled`   | User switches between Table and JSON result view (includes `view`) |
 
 No personal data is collected. Events are associated with a random anonymous ID stored in localStorage.
 
