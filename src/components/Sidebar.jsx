@@ -48,7 +48,7 @@ export default function Sidebar({ lessons, currentLessonId, lessonStates, onSele
               <path d="M13 7.5a.5.5 0 01.5.5v5.5a.5.5 0 01-.5.5H3a.5.5 0 01-.5-.5V9a.5.5 0 011 0v4h9V8a.5.5 0 01.5-.5z"/>
             </svg>
           </span>
-          <span className="truncate">Open Sandbox</span>
+          <span className="truncate">Open Playground</span>
           <span className="ml-auto text-xs bg-indigo-200/60 text-indigo-600 px-1.5 py-0.5 rounded font-mono">free</span>
         </button>
       </div>

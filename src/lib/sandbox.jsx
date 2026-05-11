@@ -10,7 +10,7 @@ export const allCollections = { books, authors, products, patrons, loans }
 
 export const sandboxLesson = {
   id: SANDBOX_LESSON_ID,
-  title: 'Sandbox',
+  title: 'Playground',
   description: null,
   explanation: (
     <>
