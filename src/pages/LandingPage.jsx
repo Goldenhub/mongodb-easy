@@ -80,7 +80,7 @@ const steps = [
   {
     num: '03',
     title: 'Run and compare',
-    desc: 'Press Cmd+Enter and see your result alongside the expected output. If they match, you pass. If not, tweak and try again.',
+    desc: 'Press Cmd/Ctrl+Enter and see your result alongside the expected output. If they match, you pass. If not, tweak and try again.',
   },
 ]
 
