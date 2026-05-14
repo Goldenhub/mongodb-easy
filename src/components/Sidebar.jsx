@@ -54,33 +54,36 @@ export default function Sidebar({ lessons, currentLessonId, lessonStates, onSele
       </div>
 
       <nav className="flex-1 overflow-y-auto scrollbar-thin py-2">
-        {lessons.filter((l) => l.id === 0).map((lesson) => {
-          const state = lessonStates[String(lesson.id)]
-          const done = state?.completed === true
-          const active = lesson.id === currentLessonId
-          return (
-            <div key={lesson.id}>
-              <div className="px-4 py-1.5 text-xs font-semibold text-slate-500 uppercase tracking-wider">
-                {lesson.module}
-              </div>
-              <button
-                onClick={() => onSelectLesson(lesson.id)}
-                className={`w-full text-left px-4 py-1.5 flex items-center gap-2 text-sm transition-colors ${
-                  active
-                    ? 'bg-green-50 text-green-800 border-l-2 border-[#47A248]'
-                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 border-l-2 border-transparent'
-                }`}
-              >
-                <span className={`w-5 h-5 rounded-full flex items-center justify-center text-xs shrink-0 ${
-                  done ? 'bg-[#47A248] text-white' : 'bg-slate-200 text-slate-500'
-                }`}>
-                  {done ? '\u2713' : '\u2605'}
-                </span>
-                <span className="truncate">{lesson.title}</span>
-              </button>
+        {lessons.filter((l) => l.module === 'Introduction').length > 0 && (
+          <div>
+            <div className="px-4 py-1.5 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+              Introduction
             </div>
-          )
-        })}
+            {lessons.filter((l) => l.module === 'Introduction').map((lesson) => {
+              const state = lessonStates[String(lesson.id)]
+              const done = state?.completed === true
+              const active = lesson.id === currentLessonId
+              return (
+                <button
+                  key={lesson.id}
+                  onClick={() => onSelectLesson(lesson.id)}
+                  className={`w-full text-left px-4 py-1.5 flex items-center gap-2 text-sm transition-colors ${
+                    active
+                      ? 'bg-green-50 text-green-800 border-l-2 border-[#47A248]'
+                      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 border-l-2 border-transparent'
+                  }`}
+                >
+                  <span className={`w-5 h-5 rounded-full flex items-center justify-center text-xs shrink-0 ${
+                    done ? 'bg-[#47A248] text-white' : 'bg-slate-200 text-slate-500'
+                  }`}>
+                    {done ? '\u2713' : '\u2605'}
+                  </span>
+                  <span className="truncate">{lesson.title}</span>
+                </button>
+              )
+            })}
+          </div>
+        )}
         {moduleBoundaries.map(({ start, end, name }) => (
           <div key={start}>
             <div className="px-4 py-1.5 text-xs font-semibold text-slate-500 uppercase tracking-wider flex items-center justify-between">

@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from 'react'
 
 const STORAGE_KEY = 'mongeesy-progress'
 const OLD_STORAGE_KEY = 'mongodb-easy-progress'
-const APP_VERSION = '1.0.0'
+const APP_VERSION = '2.0.0'
 
 function loadData() {
   try {
@@ -27,6 +27,9 @@ function loadData() {
     }
 
     if (parsed && typeof parsed === 'object' && parsed.lessons) {
+      if (parsed.version !== APP_VERSION) {
+        return migrateProgress(parsed)
+      }
       return parsed
     }
 
@@ -60,6 +63,24 @@ function migrateFromLegacy(legacyArray) {
     lessons,
   }
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+  return data
+}
+
+function migrateProgress(data) {
+  if (data.version === '1.0.0') {
+    const newLessons = {}
+    for (const [key, state] of Object.entries(data.lessons)) {
+      const num = Number(key)
+      if (num >= 1 && num <= 32) {
+        newLessons[String(num + 2)] = state
+      } else {
+        newLessons[key] = state
+      }
+    }
+    data.lessons = newLessons
+    data.version = APP_VERSION
+    saveData(data)
+  }
   return data
 }
 

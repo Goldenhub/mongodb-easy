@@ -12,6 +12,6 @@
   <text x="240" y="300" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="52" font-weight="800" fill="#0f172a" letter-spacing="-1">Mongeesy</text>
   <text x="240" y="370" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="24" fill="#64748b" font-weight="400">Learn MongoDB queries in your browser</text>
   <rect x="240" y="420" width="280" height="48" rx="8" fill="#47A248"/>
-  <text x="380" y="452" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="18" fill="white" font-weight="600" text-anchor="middle">31 free lessons →</text>
+  <text x="380" y="452" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="18" fill="white" font-weight="600" text-anchor="middle">35 free lessons →</text>
   <text x="240" y="530" font-family="'Inter', system-ui, -apple-system, sans-serif" font-size="16" fill="#94a3b8">No signup • In-browser query engine • Instant feedback</text>
 </svg>

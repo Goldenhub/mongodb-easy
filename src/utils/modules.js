@@ -1,9 +1,9 @@
 export const MODULE_NAMES = {
-  1: 'Module 1: Reading Data',
-  9: 'Module 2: Aggregation',
-  17: 'Module 3: Modifying Data',
-  22: 'Module 4: Advanced Queries',
-  28: 'Module 5: Power User',
+  3: 'Module 1: Reading Data',
+  11: 'Module 2: Aggregation',
+  19: 'Module 3: Modifying Data',
+  24: 'Module 4: Advanced Queries',
+  30: 'Module 5: Power User',
 }
 
 export function getModuleBoundaries(lessonCount) {

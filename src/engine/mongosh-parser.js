@@ -11,13 +11,18 @@ export function parseQuery(queryString) {
     throw new ParseError('Query is empty')
   }
 
-  const dbCallMatch = trimmed.match(/^db\.(\w+)\.(\w+)\s*\(/)
+  let dbCallMatch = trimmed.match(/^db\.(\w+)\.(\w+)\s*\(/)
+  let isDbMethod = false
   if (!dbCallMatch) {
-    throw new ParseError('Expected format: db.collection.method(args)')
+    dbCallMatch = trimmed.match(/^db\.(\w+)\s*\(/)
+    if (!dbCallMatch) {
+      throw new ParseError('Expected format: db.collection.method(args)')
+    }
+    isDbMethod = true
   }
 
-  const collection = dbCallMatch[1]
-  const method = dbCallMatch[2]
+  const collection = isDbMethod ? null : dbCallMatch[1]
+  const method = isDbMethod ? dbCallMatch[1] : dbCallMatch[2]
 
   const rest = trimmed.slice(dbCallMatch[0].length - 1)
   const argsStr = extractParenthesizedBlock(rest, 0)

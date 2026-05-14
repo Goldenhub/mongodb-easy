@@ -21,7 +21,7 @@ const features = [
     ),
   },
   {
-    title: '32 progressive lessons',
+    title: '35 progressive lessons',
     desc: 'Start with find() and work up to $bucket, $facet, and $lookup. Each lesson builds on the last - no gaps, no jumps.',
     icon: (
       <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="#47A248" strokeWidth="1.5">
@@ -59,11 +59,12 @@ const features = [
 ]
 
 const modules = [
-  { name: 'Reading Data', range: '1-8', desc: 'find(), projections, filters, comparison and logical operators, sorting, pagination.' },
-  { name: 'Aggregation Pipeline', range: '9-16', desc: '$match, $project, $group, $sort, $limit, $unwind, $addFields, $count.' },
-  { name: 'Writing Data', range: '17-21', desc: 'insert, update, delete, array update operators ($push, $pop, $pull).' },
-  { name: 'Advanced Queries', range: '22-27', desc: '$regex, $exists, $expr, $elemMatch, $lookup, $cond, $ifNull, dates.' },
-  { name: 'Power User', range: '28-32', desc: '$slice, $bucket, $facet, embedding vs referencing - real-world patterns.' },
+  { name: 'Getting Started', range: '0-2', desc: 'What is MongoDB?, implicit vs explicit collection creation, selecting collections.' },
+  { name: 'Reading Data', range: '3-10', desc: 'find(), projections, filters, comparison and logical operators, sorting, pagination.' },
+  { name: 'Aggregation Pipeline', range: '11-18', desc: '$match, $project, $group, $sort, $limit, $unwind, $addFields, $count.' },
+  { name: 'Writing Data', range: '19-23', desc: 'insert, update, delete, array update operators ($push, $pop, $pull).' },
+  { name: 'Advanced Queries', range: '24-29', desc: '$regex, $exists, $expr, $elemMatch, $lookup, $cond, $ifNull, dates.' },
+  { name: 'Power User', range: '30-34', desc: '$slice, $bucket, $facet, embedding vs referencing - real-world patterns.' },
 ]
 
 const steps = [
@@ -128,8 +129,8 @@ export default function LandingPage() {
             <span className="text-[#47A248]">your browser</span>
           </h1>
           <p className="mt-5 text-base sm:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
-            An interactive MongoDB playground with 32 guided lessons. Type real queries,
-            explore collections, see results instantly &mdash; no setup, no signup.
+            An interactive MongoDB playground with 35 guided lessons. Type real queries,
+            explore collections, see results instantly - no setup, no signup.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-2 sm:px-0">
             <Link
@@ -179,7 +180,7 @@ export default function LandingPage() {
 
         <div className="mt-10 flex items-center justify-center gap-8 sm:gap-12 text-center">
           <div>
-            <div className="text-2xl sm:text-3xl font-bold text-slate-900">32</div>
+            <div className="text-2xl sm:text-3xl font-bold text-slate-900">35</div>
             <div className="text-xs text-slate-400 mt-0.5">lessons</div>
           </div>
           <div className="w-px h-10 bg-slate-200" />
@@ -251,9 +252,9 @@ export default function LandingPage() {
 
       <section id="curriculum" className="border-t border-slate-200 bg-slate-50/50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-3">32 lessons in 5 modules</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-3">35 lessons across 6 modules</h2>
           <p className="text-sm text-slate-500 text-center max-w-lg mx-auto mb-10">
-            Start at lesson 1 and progress through, or jump to a topic you need.
+            Start at lesson 0 and progress through, or jump to a topic you need.
           </p>
           <div className="space-y-3">
             {modules.map((m) => (

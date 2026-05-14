@@ -22,14 +22,47 @@ export class Database {
 
   execute(queryString) {
     const parsed = parseQuery(queryString)
-    const coll = this.collections[parsed.collection]
-    if (!coll) {
-      const available = Object.keys(this.collections).join(', ')
-      throw new ParseError(`Collection '${parsed.collection}' not found. Available: ${available}`)
-    }
-
     const args = parsed.argsRaw.map((a) => evaluateArg(a))
     const method = parsed.method
+
+    if (!parsed.collection) {
+      switch (method) {
+        case 'createCollection': {
+          const [name] = args
+          if (this.collections[name]) {
+            throw new ParseError(`Collection '${name}' already exists`)
+          }
+          this.collections[name] = new Collection(name, [])
+          return { result: { ok: 1 }, collection: null, method: 'createCollection' }
+        }
+        default: {
+          throw new ParseError(`Unknown method: db.${method}()`)
+        }
+      }
+    }
+
+    let coll = this.collections[parsed.collection]
+    if (!coll) {
+      if (method === 'insertOne' || method === 'insertMany') {
+        this.collections[parsed.collection] = new Collection(parsed.collection, [])
+        coll = this.collections[parsed.collection]
+      } else {
+        let emptyResult
+        switch (method) {
+          case 'find': emptyResult = []; break
+          case 'findOne': emptyResult = null; break
+          case 'updateOne':
+          case 'updateMany': emptyResult = { matchedCount: 0, modifiedCount: 0 }; break
+          case 'deleteOne':
+          case 'deleteMany': emptyResult = { deletedCount: 0 }; break
+          case 'countDocuments': emptyResult = 0; break
+          case 'distinct': emptyResult = []; break
+          case 'aggregate': emptyResult = []; break
+          default: emptyResult = null
+        }
+        return { result: emptyResult, collection: parsed.collection, method }
+      }
+    }
 
     let result
     switch (method) {
